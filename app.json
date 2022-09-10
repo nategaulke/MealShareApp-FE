@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "MealShareApp",
+    "slug": "MealShareApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
