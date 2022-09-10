@@ -53,3 +53,12 @@ buck-out/
 .expo/
 web-build/
 dist/
+
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+node_modules/.bin/expo
