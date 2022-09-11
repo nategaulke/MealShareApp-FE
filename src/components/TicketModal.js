@@ -52,9 +52,6 @@ export default function TicketModal({
 	const [people, setPeople] = useState(initialTicketData.peopleSetting);
 	const [peopleOpen, setPeopleOpen] = useState(false);
 
-	console.log(restriction, people, food);
-	console.log(initialTicketData);
-
 	const { userInfo } = useContext(AuthContext);
 
 	useEffect(() => {
