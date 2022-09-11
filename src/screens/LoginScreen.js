@@ -3,7 +3,7 @@ import { Text, View, TextInput, Button } from "react-native";
 import axios from "axios";
 
 import { useNavigation } from "@react-navigation/native";
-import { AuthContext } from "../authContext";
+import { AuthContext } from "../context/authContext";
 
 export default function LoginScreen() {
 	const [email, setEmail] = useState("");
