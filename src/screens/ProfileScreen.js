@@ -1,31 +1,15 @@
-import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-
-const FieldComponent = ({ fieldName, isEditing, field, setIsField }) => {
-    return (
-        <View style={styles.row}>
-            <Text>{fieldName}: </Text>
-            {!isEditing &&
-                <Text>{field}</Text>
-            }
-            {isEditing &&
-                <TextInput
-                    placeholder={field}
-                    onChangeText={(text) => setIsField(text)}
-                />
-            }
-        </View>
-    );
-}
+import React, { useState } from 'react'
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import FieldComponent from '../components/FieldComponent'
 
 function ProfileScreen({ navigation }) {
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState(false)
 
-    const [isFirstName, setIsFirstName] = useState("Unknown");
-    const [isLastName, setIsLastName] = useState("Unknown");
-    const [isEmail, setIsEmail] = useState("Unknown");
-    const [isPronouns, setIsPronouns] = useState("Unknown");
-    const [isAge, setIsAge] = useState(0);
+    const [isFirstName, setIsFirstName] = useState("Unknown")
+    const [isLastName, setIsLastName] = useState("Unknown")
+    const [isEmail, setIsEmail] = useState("Unknown")
+    const [isPronouns, setIsPronouns] = useState("Unknown")
+    const [isAge, setIsAge] = useState(0)
 
     return (
         <View style={styles.container}>
@@ -60,11 +44,11 @@ function ProfileScreen({ navigation }) {
                 setIsField={setIsAge}
             />
             <Button
-                title="Edit"
+                title={!isEditing ? "Edit" : "Save"}
                 onPress={() => setIsEditing(!isEditing)}
             />
         </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -77,7 +61,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row"
     }
-});
+})
 
-export default ProfileScreen;
+export default ProfileScreen
 
