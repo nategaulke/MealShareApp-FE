@@ -1,9 +1,12 @@
-import React from 'react';
-import { SafeAreaView } from 'react-native';
-import Navigation from './src/components/Navigation';
+import React from "react";
+import { SafeAreaView } from "react-native";
+import { AuthProvider } from "./src/authContext";
+import Navigation from "./src/components/Navigation";
 
 export default function App() {
-  return (
-    <Navigation />
-  );
+	return (
+		<AuthProvider>
+			<Navigation />
+		</AuthProvider>
+	);
 }
