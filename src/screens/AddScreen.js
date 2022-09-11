@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
 import FieldComponent from '../components/FieldComponent';
 
@@ -139,6 +139,7 @@ function ProducerCardComponent() {
         { label: 'Mexican', value: 'Mexican' },
         { label: 'Indian', value: 'Indian' }
     ])
+    const [description, setDescription] = useState("")
 
     return (
         <View>
@@ -174,6 +175,14 @@ function ProducerCardComponent() {
                     setItems={setFood}
                 />
             }
+
+            <Text>Item Description</Text>
+            <TextInput
+                onChangeText={setDescription}
+                value={description}
+                placeholder="Item Description"
+                keyboardType="default"
+            />
         </View>
     )
 }
