@@ -1,22 +1,22 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ProfileScreen from '../screens/ProfileScreen';
-import AddScreen from '../screens/AddScreen';
-import MatchScreen from '../screens/MatchScreen';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import LoginScreen from "../screens/LoginScreen";
+import ContentScreen from "../screens/ContentScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 function Navigation() {
-    return (
-        <NavigationContainer>
-            <Tab.Navigator initialRouteName="Profile">
-                <Tab.Screen name="Profile" component={ProfileScreen} />
-                <Tab.Screen name="Add Ticket" component={AddScreen} />
-                <Tab.Screen name="Matches" component={MatchScreen} />
-            </Tab.Navigator>
-        </NavigationContainer>
-    );
+	return (
+		<NavigationContainer>
+			<Stack.Navigator screenOptions={{ headerShown: false }}>
+				<Stack.Screen name="Login" component={LoginScreen} />
+				<Stack.Screen name="Register" component={RegisterScreen} />
+				<Stack.Screen name="Content" component={ContentScreen} />
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 }
 
 export default Navigation;
