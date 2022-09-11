@@ -24,6 +24,9 @@ function ConsumerCardComponent({
 	refreshTickets,
 	showActions = true,
 }) {
+	const [email, setEmail] = useState("");
+	const { userData } = useContext(AuthContext);
+
 	const deleteTicket = (ticketData) => {
 		axios
 			.delete(
@@ -32,6 +35,18 @@ function ConsumerCardComponent({
 			.then((res) => refreshTickets())
 			.catch((err) => console.error(err));
 	};
+
+	useEffect(() => {
+		axios
+			.get(
+				"https://meet4meal.azurewebsites.net/user/" + ticketData.creator
+			)
+			.then((res) => {
+				setEmail(res.data.user.email);
+			});
+	}, [ticketData]);
+
+	console.log(email);
 
 	return (
 		<View
@@ -43,6 +58,9 @@ function ConsumerCardComponent({
 				backgroundColor: ticketData.filled ? "#d2fadd" : "white",
 			}}
 		>
+			<View>
+				<Text>{email}</Text>
+			</View>
 			<View>
 				<Text>
 					Food Interests:{" "}
@@ -102,6 +120,9 @@ function ProducerCardComponent({
 	refreshTickets,
 	showActions = true,
 }) {
+	const [email, setEmail] = useState("");
+	const { userData } = useContext(AuthContext);
+
 	const deleteTicket = (ticketData) => {
 		axios
 			.delete(
@@ -110,6 +131,16 @@ function ProducerCardComponent({
 			.then((res) => refreshTickets())
 			.catch((err) => console.error(err));
 	};
+
+	useEffect(() => {
+		axios
+			.get(
+				"https://meet4meal.azurewebsites.net/user/" + ticketData.creator
+			)
+			.then((res) => {
+				setEmail(res.data.user.email);
+			});
+	}, [ticketData]);
 
 	return (
 		<View
@@ -121,6 +152,10 @@ function ProducerCardComponent({
 				backgroundColor: ticketData.filled ? "#d2fadd" : "white",
 			}}
 		>
+			<View>
+				<Text>{email}</Text>
+			</View>
+
 			<View>
 				<Text
 					style={{ numberOfLines: 1 }}
