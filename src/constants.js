@@ -19,6 +19,11 @@ export const dietaryRestrictions = [
 	{ label: "Pescatarian", value: "Pescatarian" },
 	{ label: "Halal", value: "Halal" },
 	{ label: "Kosher", value: "Kosher" },
+	{ label: "None", value: "None" },
 ];
 
-export const peopleSettings = ["Group", "Individual", "Any"];
+export const peopleSettings = [
+	{ label: "Group", value: "Group" },
+	{ label: "Individual", value: "Individual" },
+	{ label: "No Preference", value: "No Preference" },
+];

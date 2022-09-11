@@ -212,8 +212,8 @@ function AddScreen() {
 	};
 
 	const editTicket = (ticketData) => {
-		setModalMode(EDITING);
 		setModalTicketData(ticketData);
+		setModalMode(EDITING);
 	};
 
 	useEffect(() => getMyCards(), [userInfo, showAccepted]);
@@ -233,7 +233,7 @@ function AddScreen() {
 					title="Share a Meal!"
 					onPress={() => {
 						setModalTicketData({});
-						setModalMode(CREATE);
+						setModalMode(CREATING);
 					}}
 				/>
 			</View>
