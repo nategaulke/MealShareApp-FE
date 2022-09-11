@@ -44,7 +44,7 @@ function ProfileScreen({ navigation }) {
                 setIsField={setIsAge}
             />
             <Button
-                title="Edit"
+                title={!isEditing ? "Edit" : "Save"}
                 onPress={() => setIsEditing(!isEditing)}
             />
         </View>
