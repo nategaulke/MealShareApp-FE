@@ -1,15 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { AuthContext } from '../authContext'
 import FieldComponent from '../components/FieldComponent'
+import axios from "axios";
 
 function ProfileScreen({ navigation }) {
     const [isEditing, setIsEditing] = useState(false)
+    const [error, setError] = useState("");
+    const { userInfo, receiveUserInfo } = useContext(AuthContext);
 
-    const [isFirstName, setIsFirstName] = useState("Unknown")
-    const [isLastName, setIsLastName] = useState("Unknown")
-    const [isEmail, setIsEmail] = useState("Unknown")
-    const [isPronouns, setIsPronouns] = useState("Unknown")
-    const [isAge, setIsAge] = useState(0)
+    const [isFirstName, setIsFirstName] = useState(userInfo.firstName)
+    const [isLastName, setIsLastName] = useState(userInfo.lastName)
+    const [isEmail, setIsEmail] = useState(userInfo.email)
+    const [isPronouns, setIsPronouns] = useState(userInfo.pronouns)
+    const [isAge, setIsAge] = useState(userInfo.age)
+
+    const handleSave = () => {
+        setIsEditing(!isEditing)
+        axios
+            .post(
+                `https://meet4meal.azurewebsites.net/user/edit`,
+                {
+                    _id: userInfo._id,
+                    fields: {
+                        email: isEmail,
+                        age: isAge,
+                        firstName: isFirstName,
+                        lastName: isLastName,
+                        pronouns: isPronouns,
+                    }
+                }
+            )
+            .then((res) => {
+                if (res.status == 200) {
+                    receiveUserInfo(res.data.user);
+                    setError("");
+                } else {
+                    setError("Invalid Login");
+                }
+            })
+            .catch((err) => {
+                setError("Invalid Save");
+                console.error(err);
+            });
+    }
 
     return (
         <View style={styles.container}>
@@ -45,7 +79,7 @@ function ProfileScreen({ navigation }) {
             />
             <Button
                 title={!isEditing ? "Edit" : "Save"}
-                onPress={() => setIsEditing(!isEditing)}
+                onPress={handleSave}
             />
         </View>
     )
